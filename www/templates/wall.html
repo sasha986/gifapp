@@ -1,0 +1,7 @@
+<div id="gallery" class="" ng-controller="wallController">
+    <section id="photos">
+        <div ng-repeat="gif in gifs">
+            <img class="gif" ng-src="{{ gif.images.fixed_height_still.url }}" />
+        </div>
+    </section>
+</div>
