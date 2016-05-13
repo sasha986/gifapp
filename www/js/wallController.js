@@ -4,7 +4,7 @@ angular.module('gifapp.controllers', []).
         $scope.gifs = [];
 
         $scope.loadMore = _.throttle(function() {
-        	giphyAPIservice.getGifs('cute+animals', 10, $scope.gifs.length).success(function (response) {
+        	giphyAPIservice.getGifs('animals', 10, $scope.gifs.length).success(function (response) {
 
             	_.each(response.data, function(data) {
             		$scope.gifs.push(data);
