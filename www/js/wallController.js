@@ -3,41 +3,36 @@ angular.module('gifapp.controllers', []).
     controller('wallController', function ($scope, $ionicModal, giphyAPIservice) {
         $scope.gifs = [];
 
-        $ionicModal.fromTemplateUrl('templates/gifModal.html', {
-            scope: $scope,
-            animation: 'slide-in-up'
-        }).then(function (modal) {
-            $scope.modal = modal;
-        });
+        $scope.showImage = function(image) {
+            $scope.popupImage = image;
+            $scope.showModal('templates/popup.html');
+	    }
 
-        $scope.openModal = function() {
-            $scope.modal.show();
-        };
-
+        $scope.showModal = function(templateUrl) {
+            $ionicModal.fromTemplateUrl(templateUrl, {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function(modal) {
+                $scope.modal = modal;
+                $scope.modal.show();
+            });
+        }
+	    // Close the modal
         $scope.closeModal = function() {
             $scope.modal.hide();
+            $scope.modal.remove()
         };
 
-        //Cleanup the modal when we're done with it!
-        $scope.$on('$destroy', function() {
-            $scope.modal.remove();
-        });
+        $scope.loadMore = _.throttle(function() {
+        	giphyAPIservice.getGifs('animals', 10, $scope.gifs.length).success(function (response) {
+            	_.each(response.data, function(data) {
+            		$scope.gifs.push(data);
+                });
 
-        // Execute action on hide modal
-        $scope.$on('modal.hidden', function() {
-            // Execute action
-        });
-
-        // Execute action on remove modal
-        $scope.$on('modal.removed', function() {
-            // Execute action
-        });
-        // request gifs
-        var refresh = function() {
-            giphyAPIservice.getGifs('cute+animals', 25, 0).success(function (response) {
-                $scope.gifs = response.data;
                 console.log(response);
+                $scope.$broadcast('scroll.infiniteScrollComplete');
             });
-        };
-        refresh();
+        }, 3000);
+
+        $scope.loadMore();
     });

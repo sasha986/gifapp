@@ -1,7 +1,7 @@
 <ion-pane ng-controller="wallController">
     <ion-content>
         <section id="photos">
-            <img class="gif" ng-repeat="gif in gifs" ng-click="modal.show(gif.images.fixed_width_still.url)" ng-src="{{ gif.images.fixed_width_still.url }}" />
+            <img class="gif" ng-repeat="gif in gifs" ng-click="showImage(gif.images.downsized_large.url)" ng-src="{{ gif.images.fixed_width_still.url }}" />
         </section>
         <ion-infinite-scroll on-infinite="loadMore()" distance="1%">
         </ion-infinite-scroll>

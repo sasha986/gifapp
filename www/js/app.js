@@ -6,7 +6,7 @@
 angular.module('gifapp', [
   'ionic',
   'gifapp.controllers',
-  'gifapp.services'
+  'gifapp.services',
 ])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
