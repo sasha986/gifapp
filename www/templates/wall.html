@@ -1,15 +1,8 @@
 <ion-pane ng-controller="wallController">
     <ion-content>
-        <div class="row">
-            <div class="col"><img class="gif" ng-src="{{ gifs[0].images.fixed_height_still.url }}" /></div>
-            <div class="col"><img class="gif" ng-src="{{ gifs[1].images.fixed_height_still.url }}" /></div>
-            <div class="col"><img class="gif" ng-src="{{ gifs[2].images.fixed_height_still.url }}" /></div>
-        </div>
-        <div class="row">
-            <div class="col"><img class="gif" ng-src="{{ gifs[3].images.fixed_height_still.url }}" /></div>
-            <div class="col"><img class="gif" ng-src="{{ gifs[4].images.fixed_height_still.url }}" /></div>
-            <div class="col"><img class="gif" ng-src="{{ gifs[5].images.fixed_height_still.url }}" /></div>
-        </div>
+        <section id="photos">
+            <img class="gif" ng-repeat="gif in gifs" ng-click="modal.show(gif.images.fixed_width_still.url)" ng-src="{{ gif.images.fixed_width_still.url }}" />
+        </section>
         <ion-infinite-scroll on-infinite="loadMore()" distance="1%">
         </ion-infinite-scroll>
     </ion-content>
