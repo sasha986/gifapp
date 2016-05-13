@@ -1,0 +1,19 @@
+$dark: #252525;
+
+.pane {
+	background-color: $dark;
+}
+
+.row {
+	margin: 0px;
+	padding: 0px;
+}
+
+.col {
+	padding: 0px;
+}
+
+.gif {
+	width: 100%;
+	object-fit: cover;
+}
