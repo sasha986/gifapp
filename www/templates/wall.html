@@ -10,7 +10,8 @@
             <div class="col"><img class="gif" ng-src="{{ gifs[4].images.fixed_height_still.url }}" /></div>
             <div class="col"><img class="gif" ng-src="{{ gifs[5].images.fixed_height_still.url }}" /></div>
         </div>
-        <ion-infinite-scroll on-infinite="loadMore()" distance="1%">
+        <img class="gif" ng-repeat="gif in gifs" ng-src="{{ gif.images.fixed_height_still.url }}" />
+        <ion-infinite-scroll on-infinite="loadMore()" distance="10%">
         </ion-infinite-scroll>
     </ion-content>
 </ion-pane>
